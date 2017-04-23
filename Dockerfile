@@ -7,6 +7,7 @@ RUN \
 # install packages
     apk add --no-cache \
         git \
+        libgomp \
         p7zip \
         python \
         py-pip \
@@ -25,18 +26,18 @@ RUN \
         python-dev \
         tar &&\
 
-# install par2cmdline
+# install par2cmdline-mt
     mkdir -p \
-        /tmp/par2cmdline &&\
-    latest_tag=$(curl -sX GET "https://api.github.com/repos/Parchive/par2cmdline/releases/latest" \
+        /tmp/par2cmdline-mt &&\
+    latest_tag=$(curl -sX GET "https://api.github.com/repos/jkansanen/par2cmdline-mt/releases/latest" \
         | awk '/tag_name/{print $4;exit}' FS='[""]') &&\
     curl -o \
-        /tmp/par2cmdline.src.tar.gz -L \
-        https://github.com/Parchive/par2cmdline/archive/$latest_tag.tar.gz &&\
-    tar xf /tmp/par2cmdline.src.tar.gz \
-        -C /tmp/par2cmdline \
+        /tmp/par2cmdline-mt.src.tar.gz -L \
+        https://github.com/jkansanen/par2cmdline-mt/archive/$latest_tag.tar.gz &&\
+    tar xf /tmp/par2cmdline-mt.src.tar.gz \
+        -C /tmp/par2cmdline-mt \
         --strip-components=1 &&\
-    cd /tmp/par2cmdline &&\
+    cd /tmp/par2cmdline-mt &&\
     aclocal &&\
     automake --add-missing &&\
     autoconf &&\
