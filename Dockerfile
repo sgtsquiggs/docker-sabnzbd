@@ -1,7 +1,7 @@
 FROM sgtsquiggs/alpine:3.4
 MAINTAINER sgtsquiggs
 
-ENV SABNZBD_VERSION="2.0.0"
+ENV SABNZBD_VERSION="2.3.2"
 
 RUN \
 # install packages
